@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import Header from'./Header.js'
+import SearchFunctions from './SearchFunctions.js'
+import RenderPokemon from './RenderPokemon.js'
+import pokeData from './pokeData.js'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export default class App extends Component {
+  state = {
+    filter: '',
+    userInput: ''
+  }
+ 
+  clickHandle = (event) => {
+    this.setState({
+        userInput: event.target.value
+        });
+  }
+  
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({
+      filter: `${this.state.userInput}`
+    });
+    (console.log(this.state.filter));
+  }
 
-export default App;
+      render() {
+        return (
+          <div className="main">
+            <Header/>
+            <SearchFunctions clickHandle={this.clickHandle} userInput={this.state.userInput} handleSubmit={this.handleSubmit}/>
+            <RenderPokemon filter={this.state.filter} pokeData={pokeData}/>
+          </div>
+        )
+  }
+}
