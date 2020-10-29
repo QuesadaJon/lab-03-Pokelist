@@ -13,23 +13,23 @@ export default class App extends Component {
  
   clickHandle = (event) => {
     this.setState({
-        filter: event.target.value
+        userInput: event.target.value
         });
   }
   
   handleSubmit = (event) => {
-    alert(`You have applied ${this.state.userInput} as a filter`)
+    event.preventDefault();
     this.setState({
-      userInput: `${this.state.filter}`
-    })
+      filter: `${this.state.userInput}`
+    });
+    (console.log(this.state.filter));
   }
 
       render() {
         return (
           <div className="main">
             <Header/>
-            <SearchFunctions clickHandle={this.clickHandle} filter={this.state.filter} handleSubmit={this.handleSubmit}/>
-            <div>{this.state.filter}</div>
+            <SearchFunctions clickHandle={this.clickHandle} userInput={this.state.userInput} handleSubmit={this.handleSubmit}/>
             <RenderPokemon filter={this.state.filter} pokeData={pokeData}/>
           </div>
         )

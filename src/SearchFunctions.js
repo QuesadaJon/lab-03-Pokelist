@@ -7,7 +7,7 @@ export default class SearchFunctions extends Component {
             <div>
                 <label>Filter</label>
                     <input 
-                    value={this.props.filter}
+                    value={this.props.userInput}
                     onChange={this.props.clickHandle}
                     />
             </div>

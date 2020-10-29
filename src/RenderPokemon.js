@@ -6,6 +6,12 @@ export default class RenderPokemon extends Component {
         const filteredPokemon = this.props.pokeData.filter((creature) => {
             if (!this.props.filter) return true;
 
+            if(creature.shape === this.props.filter) return true;
+
+            if (creature.pokebase === this.props.filter) return true;
+
+            if (creature.type_1 || creature.type_2 === this.props.filter) return true;
+
             return false
         });
         return (
