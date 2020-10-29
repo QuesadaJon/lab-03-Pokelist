@@ -10,7 +10,11 @@ export default class RenderPokemon extends Component {
 
             if (creature.pokebase === this.props.filter) return true;
 
-            if (creature.type_1 || creature.type_2 === this.props.filter) return true;
+            if (creature.type_1 === this.props.filter) return true;
+
+            if(creature.type_2 === this.props.filter) return true;
+
+            if(creature.attack === this.props.filter) return true
 
             return false
         });
@@ -18,6 +22,7 @@ export default class RenderPokemon extends Component {
             <div className="pokemon-body">
                 {
                     filteredPokemon.map(creature => <ListItem
+                    _id={creature._id}
                     pokemon={creature.pokemon}
                     url={creature.url_image}
                     type1={creature.type_1}
