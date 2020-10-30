@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
+import Dropdown from './Dropdown.js'
 
 export default class SearchFunctions extends Component {
     render() {
         return (
-            <form onSubmit={this.props.handleSubmit}>
-            <div>
-                <label>Filter</label>
-                    <input 
-                    value={this.props.userInput}
-                    onChange={this.props.clickHandle}
-                    />
+            <div className="search-function">
+                <form onSubmit={this.props.handleSubmit}>
+                    <label>Filter</label>
+                        <input 
+                        onChange={this.props.handleChange} 
+                        />
+                    <button>Submit</button>        
+                </form>
+                <Dropdown/>
             </div>
-                    <button
-                    type="submit"
-                    >Submit</button>        
-            </form>
         )
     }
 }
