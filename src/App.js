@@ -15,9 +15,10 @@ export default class App extends Component {
       render() {
         return (
           <Router>
+              <Header/>
             <div className="main">
-              <nav className="nav-bar">
-                <ul>
+              <nav className="nav">
+                <ul className="nav-links">
                   <li>
                     <Link to="/">Home</Link>
                   </li>
@@ -29,7 +30,6 @@ export default class App extends Component {
                   </li>
                 </ul>
               </nav>
-              <Header/>
               <Switch>
                 <Route
                   path="/"
