@@ -4,7 +4,7 @@ import Dropdown from './Dropdown.js'
 export default class SearchFunctions extends Component {
     render() {
         return (
-            <div>
+            <div className="search-function">
                 <form onSubmit={this.props.handleSubmit}>
                     <label>Filter</label>
                         <input 
