@@ -14,7 +14,7 @@ nav-bar {
 
 }
 
-.nav.links {
+#nav.links {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

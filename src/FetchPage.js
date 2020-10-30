@@ -16,8 +16,8 @@ export default class FetchPage extends Component {
     }
 
     componentDidMount = async () => {
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex`);
-        // await sleep(6800)
+        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?perPage=50`);
+        await sleep(6800)
         this.setState({ pokeDex: response.body.results });
     }
 
