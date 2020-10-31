@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import pokemonSprite from './assets/pokemon-sprite.png'
 
 export default class Header extends Component {
     render() {
         return (
-            <div className="header">
-                This is the Header!
-                <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+            <div className="header"> 
+                <img src={pokemonSprite} alt="pokemon-sprite" style={{ marginRight: 150 }}/>
+                Pokémon Search Functions!!!
             </div>
         )
     }
