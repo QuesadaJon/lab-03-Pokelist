@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import request from 'superagent';
 import FetchPageSelectors from './FetchPageSelectors.js'
+import { Link } from "react-router-dom";
 
 const sleep = (time) => new Promise((resolve, reject) =>{
     setTimeout(() => {
         resolve()
     }, time)
 });
+
 export default class FetchPage extends Component {
     state = {
         pokeDex: [],
@@ -72,11 +74,11 @@ export default class FetchPage extends Component {
                 style={{ marginBottom: 18 }}
                 allowFullScreen/>
                 
-                : this.state.pokeDex.map(creature => <div key={creature._id} className="pokemon-render">
-                    <div>{creature.pokemon}</div>
+                : this.state.pokeDex.map(creature => <Link to={`pokemon/${creature.pokemon}`}><div key={creature.pokedex+creature.id} className="pokemon-render">
+                    <div className="text-render">{creature.pokemon}</div>
                     <img src={creature.url_image} alt={creature.pokemon} className="pokemon-img"/>
-                    <div>Type: {creature.type_1}/{creature.type_2}</div>
-                    </div>)
+                    <div className="text-render">Type: {creature.type_1}/{creature.type_2}</div>
+                    </div></Link>)
                 }
             </div>
             </>

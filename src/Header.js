@@ -6,7 +6,7 @@ export default class Header extends Component {
         return (
             <div className="header"> 
                 <img src={pokemonSprite} alt="pokemon-sprite" style={{ marginRight: 150 }}/>
-                Pokémon Search Functions!!!
+                Search for Pokémon
             </div>
         )
     }

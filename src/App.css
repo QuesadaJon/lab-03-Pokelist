@@ -5,7 +5,14 @@ body, html {
   padding: 0;
   font-family: 'Indie Flower', cursive;  
   background-color: #2671b9;
+}
 
+.body-header{
+  display: flex;
+  margin-top: 20px;
+  background-color: #fcc916;
+  border-radius: 30px;
+  margin-bottom: 20px;
 }
  
 nav {
@@ -13,21 +20,22 @@ nav {
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  width: 100%;
-  min-height: 10vh;
+  width: 60%;
   font-size: 2.5em;
 }
 
 .nav-links {
   display: flex; 
-  width: 60%;
+  flex-direction: column;
+  width: 100%;
   justify-content: space-around;
   list-style: none;
 }
-.main{
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100%;
 }
 
 .search-function {
@@ -40,16 +48,14 @@ nav {
 
 .header {
   display: flex;
+  padding: 20px;
   flex-direction: row;
   justify-content: space-between;
   height: 160px;
-  width: 750px;
+  width: 80%;
   margin: 0 auto;
-  padding: 10px;
-  font-size: 3.5em;
+  font-size: 2.5em;
   margin-top: 20px;
-  background-color: #fcc916;
-  border-radius: 30px;
 }
 
 form {
@@ -94,6 +100,14 @@ button {
   background-color: #664596;
   color: white;
   text-transform: capitalize;
+  list-style: none;
+  text-decoration: none !important;
+}
+
+.text-render {
+  text-decoration: none !important;
+  list-style: none;
+
 }
 
 .pokemon-img {
@@ -112,4 +126,64 @@ button {
   bottom: 0px;
   text-align: right;
   background-color: #fcc916;
+}
+
+.details-render {
+  display: flex;
+}
+
+.details-creature {
+  font-size: 40px;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.details-img {
+  object-fit: cover;
+  height: 400px;
+  width: 400px;
+}
+
+.details-pokemon-stats-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.details-text-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  border-style: solid;
+}
+
+.details-stats {
+  text-align: center;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.stats-grid {
+  grid-column-start: 1;
+
+}
+
+.stat {
+  padding: 20px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.value-grid {
+  grid-column-start: 1;
+  border-style: solid;
+}
+
+.value {
+  padding: 20px;
+  font-size: 25px;
+  text-align: center;
 }
