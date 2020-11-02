@@ -16,18 +16,22 @@ export default class FetchPage extends Component {
         type: '',
         attribute: '',
         order: '',
-        search: 'pokemon'
+        search: '&pokemon',
+        pageNumber: 1,
     }
 
     componentDidMount = async () => {
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?perPage=48`);
+        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}&perPage=24`);
         await sleep(6800)
-        this.setState({ pokeDex: response.body.results });
+        this.setState({ 
+            pokeDex: response.body.results,
+            count: response.body.count
+        });
     }
 
     handleClick = async (e) => {
         e.preventDefault();
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.search}=${this.state.pokemon}${this.state.type}${this.state.attribute}${this.state.order}&perPage=48`);
+        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}${this.state.search}=${this.state.pokemon}${this.state.type}${this.state.attribute}${this.state.order}&perPage=24`);
         this.setState({ pokeDex: response.body.results })
     }
 
@@ -50,7 +54,19 @@ export default class FetchPage extends Component {
     handleSearch = async (event) => {
         this.setState({ search: event.target.value})
     }
+
+    handleIncriment = async (e) => {
+         await this.setState({ pageNumber: this.state.pageNumber + 1})
+         await this.handleClick(e);
+    }
+    
+    handleDecrement = async (e) => {
+        await this.setState({ pageNumber: this.state.pageNumber - 1})
+        await this.handleClick(e);
+   }
+    
     render() {
+        console.log(this.state.pageNumber)
         return (
             <>
             <FetchPageSelectors 
@@ -81,6 +97,16 @@ export default class FetchPage extends Component {
                     </div></Link>)
                 }
             </div>
+            <div>
+                {
+                    this.state.pageNumber !== 1 && <button onClick={this.handleDecrement}>Prev</button>
+                }                
+                {
+                    this.state.pokeDex.length === 24 &&
+                    <button onClick={this.handleIncriment}>Next</button>
+                    }
+            </div>
+            <div>Page: {this.state.pageNumber} out of {Math.ceil(this.state.count / 24)}</div>
             </>
         )
     }
