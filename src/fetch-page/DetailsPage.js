@@ -3,7 +3,7 @@ import request from 'superagent'
 
 export default class DetailsPage extends Component {
     state = {
-        pokeDex: []
+        pokeDex: [],
     }
 
     componentDidMount = async () => {

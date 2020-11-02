@@ -6,10 +6,10 @@ export default class FetchPageSelectors extends Component {
             <form onSubmit={this.props.handleClick}>
                     <select onChange={this.props.handleSearch}>
                         <option value="">Search By</option>
-                        <option value="pokemon">pokemon</option>
-                        <option value="ability_1">ability</option>
-                        <option value="egg_group_1">egg group</option>
-                        <option value="shape">shape</option>
+                        <option value="&pokemon">pokemon</option>
+                        <option value="&ability_1">ability</option>
+                        <option value="&egg_group_1">egg group</option>
+                        <option value="&shape">shape</option>
                     </select>
                     <input onChange={this.props.handleChange}/>
                     <select onChange={this.props.handleOrder}>
