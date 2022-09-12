@@ -15,7 +15,6 @@ export default class FetchPage extends Component {
         pokemon: '',
         type: '',
         attribute: '',
-        order: '',
         search: '&pokemon',
         pageNumber: 1,
     }
@@ -31,8 +30,9 @@ export default class FetchPage extends Component {
 
     handleClick = async (e) => {
         e.preventDefault();
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}${this.state.search}=${this.state.pokemon}${this.state.type}${this.state.attribute}${this.state.order}&perPage=24`);
-        this.setState({ pokeDex: response.body.results })
+        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}${this.state.search}=${this.state.pokemon}${this.state.type}${this.state.attribute}&perPage=24`);
+        this.setState({ pokeDex: response.body.results });
+        console.log(this.state);
     }
 
     handleChange = async (event) => {

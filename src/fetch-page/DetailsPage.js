@@ -25,7 +25,7 @@ export default class DetailsPage extends Component {
                 style={{ marginBottom: 18 }}
                 allowFullScreen/>
                 
-                : this.state.pokeDex.map(creature => <div key={creature.pokedex+creature.id} className="details-render">
+                : this.state.pokeDex.map(creature => <div key={creature.id} className="details-render">
                     <div>
                         <div className="details-creature">{creature.pokemon}</div>
                         <div className="details-pokemon-stats-body">

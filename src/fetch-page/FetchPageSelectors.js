@@ -12,11 +12,6 @@ export default class FetchPageSelectors extends Component {
                         <option value="&shape">shape</option>
                     </select>
                     <input onChange={this.props.handleChange}/>
-                    <select onChange={this.props.handleOrder}>
-                        <option value=''>Order</option>
-                        <option value="&direction=asc">ascending</option>
-                        <option value="&direction=desc">descending</option> 
-                    </select>
                     <select onChange={this.props.handleAttribute}>
                         <option value="">Stat</option>
                         <option value="&sort=attack">attack</option>
