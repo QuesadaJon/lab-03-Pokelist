@@ -90,11 +90,14 @@ export default class FetchPage extends Component {
                 style={{ marginBottom: 18 }}
                 allowFullScreen/>
                 
-                : this.state.pokeDex.map(creature => <Link to={`pokemon/${creature.pokemon}`}><div key={creature.pokedex+creature.id} className="pokemon-render">
+                : this.state.pokeDex.map(creature => 
+                  <Link to={`pokemon/${creature.pokemon}`}><div key={creature.pokedex+creature.id} className="pokemon-render">
                     <div className="text-render">{creature.pokemon}</div>
                     <img src={creature.url_image} alt={creature.pokemon} className="pokemon-img"/>
                     <div className="text-render">Type: {creature.type_1}/{creature.type_2}</div>
-                    </div></Link>)
+                    </div>
+                  </Link>
+                  )
                 }
             </div>
             <div>
@@ -104,7 +107,7 @@ export default class FetchPage extends Component {
                 {
                     this.state.pokeDex.length === 24 &&
                     <button onClick={this.handleIncriment}>Next</button>
-                    }
+                }
             </div>
             <div>Page: {this.state.pageNumber} out of {Math.ceil(this.state.count / 24)}</div>
             </>
