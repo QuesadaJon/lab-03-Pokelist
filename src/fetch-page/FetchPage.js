@@ -2,12 +2,8 @@ import React, { Component } from 'react'
 import request from 'superagent';
 import FetchPageSelectors from './FetchPageSelectors.js'
 import { Link } from "react-router-dom";
+import { getAllPokemon, getPokemon } from '../services/PokemonAPI.js';
 
-const sleep = (time) => new Promise((resolve, reject) =>{
-    setTimeout(() => {
-        resolve()
-    }, time)
-});
 
 export default class FetchPage extends Component {
     state = {
@@ -20,20 +16,20 @@ export default class FetchPage extends Component {
     }
 
     componentDidMount = async () => {
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}&perPage=24`);
-        await sleep(6800)
-        this.setState({ 
-            pokeDex: response.body.results,
-            count: response.body.count
-        });
+      const response = await getAllPokemon(this.state.pageNumber);
+      console.log(response);
+      this.setState({
+        pokeDex: response.results,
+        count: response.count
+      })
     }
 
     handleClick = async (e) => {
-        e.preventDefault();
-        const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}${this.state.search}=${this.state.pokemon}${this.state.type}${this.state.attribute}&perPage=24`);
-        this.setState({ pokeDex: response.body.results });
-        console.log(this.state);
-    }
+      e.preventDefault();
+      const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}${this.state.search}=${this.state.pokemon}${this.state.type}${this.state.attribute}&perPage=24`);
+      this.setState({ pokeDex: response.body.results });
+      console.log(this.state);
+  }
 
     handleChange = async (event) => {
         this.setState({ pokemon: event.target.value})
@@ -81,17 +77,17 @@ export default class FetchPage extends Component {
                 {
                 this.state.pokeDex.length === 0
                 ? <iframe
-                title={Math.random} 
+                title={'Loader'} 
                 src="https://giphy.com/embed/26gZ0ohvSHJr2d6Ao"
                 width="400" 
                 height="530" 
-                frameBorder="0" 
-                class="giphy-embed"
+                className="giphy-embed"
                 style={{ marginBottom: 18 }}
                 allowFullScreen/>
                 
                 : this.state.pokeDex.map(creature => 
-                  <Link to={`pokemon/${creature.pokemon}`}><div key={creature.pokedex+creature.id} className="pokemon-render">
+                  <Link to={`pokemon/${creature.pokemon}`}>
+                    <div key={creature._id} className="pokemon-render">
                     <div className="text-render">{creature.pokemon}</div>
                     <img src={creature.url_image} alt={creature.pokemon} className="pokemon-img"/>
                     <div className="text-render">Type: {creature.type_1}/{creature.type_2}</div>
