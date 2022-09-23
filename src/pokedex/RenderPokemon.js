@@ -22,6 +22,7 @@ export default class RenderPokemon extends Component {
             <div className="pokemon-body">
                 {
                     filteredPokemon.map(creature => <ListItem
+                    key={creature._id}
                     _id={creature._id}
                     pokemon={creature.pokemon}
                     url={creature.url_image}

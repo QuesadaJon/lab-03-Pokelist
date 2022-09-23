@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import request from 'superagent';
 import FetchPageSelectors from './FetchPageSelectors.js'
+import request from 'superagent';
 import { Link } from "react-router-dom";
 import { getAllPokemon, getPokemon } from '../services/PokemonAPI.js';
 
@@ -11,13 +11,12 @@ export default class FetchPage extends Component {
         pokemon: '',
         type: '',
         attribute: '',
-        search: '&pokemon',
+        search: '&pokemon=',
         pageNumber: 1,
     }
 
     componentDidMount = async () => {
       const response = await getAllPokemon(this.state.pageNumber);
-      console.log(response);
       this.setState({
         pokeDex: response.results,
         count: response.count
@@ -26,9 +25,10 @@ export default class FetchPage extends Component {
 
     handleClick = async (e) => {
       e.preventDefault();
-      const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}${this.state.search}=${this.state.pokemon}${this.state.type}${this.state.attribute}&perPage=24`);
+      // const response = await getPokemon( this.pageNumber, this.search, this.pokemon );
+      const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}${this.state.search}${this.state.pokemon}&perPage=24;`)
+      console.log(this.state.pokemon, this.state.search, response);
       this.setState({ pokeDex: response.body.results });
-      console.log(this.state);
   }
 
     handleChange = async (event) => {
@@ -43,10 +43,6 @@ export default class FetchPage extends Component {
         this.setState({ attribute: event.target.value})
     }
     
-    handleOrder = async (event) => {
-        this.setState({ order: event.target.value})
-    }
-
     handleSearch = async (event) => {
         this.setState({ search: event.target.value})
     }
@@ -62,14 +58,12 @@ export default class FetchPage extends Component {
    }
     
     render() {
-        console.log(this.state.pageNumber)
         return (
             <>
             <FetchPageSelectors 
             handleClick={this.handleClick} 
             handleChange={this.handleChange} 
             handleSearch={this.handleSearch} 
-            handleOrder={this.handleOrder} 
             andleAttribute={this.handleAttribute} 
             handleType={this.handleType}
             />
@@ -77,6 +71,7 @@ export default class FetchPage extends Component {
                 {
                 this.state.pokeDex.length === 0
                 ? <iframe
+                key={'loader'}
                 title={'Loader'} 
                 src="https://giphy.com/embed/26gZ0ohvSHJr2d6Ao"
                 width="400" 
@@ -85,9 +80,9 @@ export default class FetchPage extends Component {
                 style={{ marginBottom: 18 }}
                 allowFullScreen/>
                 
-                : this.state.pokeDex.map(creature => 
+                : this.state.pokeDex.map((creature, index) => 
                   <Link to={`pokemon/${creature.pokemon}`}>
-                    <div key={creature._id} className="pokemon-render">
+                    <div key={index} className="pokemon-render">
                     <div className="text-render">{creature.pokemon}</div>
                     <img src={creature.url_image} alt={creature.pokemon} className="pokemon-img"/>
                     <div className="text-render">Type: {creature.type_1}/{creature.type_2}</div>

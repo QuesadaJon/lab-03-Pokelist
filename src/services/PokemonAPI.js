@@ -1,5 +1,3 @@
-import request from 'superagent';
-
 const sleep = (time) => new Promise((resolve, reject) =>{
   setTimeout(() => {
       resolve()
@@ -15,9 +13,9 @@ export const getAllPokemon = async ( pageNumber ) => {
 
 }
 
-export const getPokemon = async (  pageNumber, search, pokemon, type, attribute, ) => {
+export const getPokemon = async (  pageNumber, search, pokemon, type, attribute ) => {
   return fetch(
-    `https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${pageNumber}${search}${pokemon}${type}${attribute}&perPage=24`
+    `https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${pageNumber}${search}${pokemon}&perPage=24`
   )
     .then(res => res.json());
 }
